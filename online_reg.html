@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <title>在线报名</title>
+    <link rel="stylesheet" href="css/weui.css">
+    <script src='script/flexible.js'></script>
+</head>
+<style>
+    body {
+        background-color: #f8f8f8;
+    }
+
+    input[type="radio"] + label::before {
+        content: "\a0"; /*不换行空格*/
+        display: inline-block;
+        font-size: 18px;
+        width: .5em;
+        height: .5em;
+        border-radius: 50%;
+        border: 1px solid #999999;
+        padding: .1em;
+        position: absolute;
+        top: 50%;
+        margin-top: -.4em;
+    }
+
+    input[type="radio"]:checked + label::before {
+        background-color: #005fc1;
+        background-clip: content-box;
+        padding: .1em;
+    }
+
+    input[type="radio"] {
+        position: absolute;
+        clip: rect(0, 0, 0, 0);
+    }
+
+    .radio-box {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        position: relative;
+        padding-left: .3rem;
+        background-color: #fff;
+        margin-bottom: .2rem;
+    }
+
+    .radio-box div {
+        font-size: .3rem;
+        margin-right: .8rem;
+        padding: .2rem 0;
+    }
+
+    .radio-box div label span {
+        margin-left: .48rem;
+    }
+
+    .weui-cells {
+        margin-top: 0;
+        font-size: .3rem;
+    }
+
+    .weui-cell {
+        padding: .22rem .3rem;
+        color: #333;
+    }
+
+    .weui-cell > div > p {
+        min-width: 1.5rem;
+    }
+
+    .weui-cell__ft {
+        text-align: left;
+        color: #999;
+    }
+
+    .weui-select {
+        height: .44rem;
+        line-height: .44rem;
+        padding: 0;
+        color: #999;
+    }
+
+    .select .weui-cell__bd:before {
+        content: " ";
+        display: inline-block;
+        height: 6px;
+        width: 6px;
+        border-width: 2px 2px 0 0;
+        border-color: #C8C8CD;
+        border-style: solid;
+        position: relative;
+        top: -2px;
+        position: absolute;
+        top: 50%;
+        right: 15px;
+        margin-top: -6px;
+        transform: rotate(135deg);
+    }
+
+    input::-webkit-input-placeholder {
+        color: #999;
+    }
+
+    .cell-radio-box {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        position: relative;
+        background-color: #fff;
+    }
+
+    .cell-radio-box div {
+        font-size: .3rem;
+        margin-right: .8rem;
+    }
+
+    .cell-radio-box div label span {
+        margin-left: .48rem;
+    }
+
+    .weui-picker-overlay, .weui-picker-container {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 0;
+        width: 100%;
+    }
+
+    .weui-picker-modal.weui-picker-modal-visible {
+        opacity: 1;
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+
+    .weui-cell:before, .weui-cells:after {
+        z-index: 0;
+    }
+
+    .weui-picker-modal {
+        width: 100%;
+        position: absolute;
+        z-index: 100;
+        bottom: 0;
+        text-align: center;
+        border-radius: 0;
+        opacity: .6;
+        color: #3d4145;
+        -webkit-transition-duration: .3s;
+        transition-duration: .3s;
+        height: 4.16rem;
+        background: #efeff4;
+        -webkit-transform: translate3d(0, 100%, 0);
+        transform: translate3d(0, 100%, 0);
+        -webkit-transition-property: opacity, -webkit-transform;
+        transition-property: opacity, -webkit-transform;
+        transition-property: transform, opacity;
+        transition-property: transform, opacity, -webkit-transform;
+        z-index: 222;
+    }
+
+    .weui-picker-modal .toolbar {
+        position: relative;
+        width: 100%;
+        font-size: .32rem;
+        line-height: 1.5;
+        color: #3d4145;
+        background: #f7f7f8;
+    }
+
+    @media only screen and (-webkit-min-device-pixel-ratio: 2) {
+        .weui-picker-modal .toolbar:before {
+            -webkit-transform: scaleY(0.5);
+            transform: scaleY(0.5);
+        }
+    }
+
+    .weui-picker-modal .toolbar:before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: auto;
+        right: auto;
+        height: 1px;
+        width: 100%;
+        background-color: #d9d9d9;
+        display: block;
+        z-index: 15;
+        -webkit-transform-origin: 50% 0;
+        transform-origin: 50% 0;
+    }
+
+    .weui-picker-modal .toolbar-inner {
+        height: .72rem;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        text-align: center;
+    }
+
+    .weui-picker-modal .picker-button {
+        position: absolute;
+        right: 0;
+        box-sizing: border-box;
+        height: .72rem;
+        line-height: .72rem;
+        color: #04be02;
+        z-index: 1;
+        padding: 0 .5rem;
+    }
+
+    a {
+        color: #18b4ed;
+        text-decoration: none;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    }
+
+    .weui-picker-modal .title {
+        position: absolute;
+        display: block;
+        width: 100%;
+        padding: 0;
+        font-size: .34rem;
+        font-weight: normal;
+        line-height: .72rem;
+        color: #3d4145;
+        text-align: center;
+        white-space: nowrap;
+    }
+
+    .weui-picker-modal .picker-items {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-justify-content: space-between;
+        justify-content: space-between;
+        width: 100%;
+        padding: 0;
+        text-align: center;
+        font-size: 17px;
+        font-weight: normal;
+        -webkit-mask-box-image: -webkit-linear-gradient(bottom, transparent, transparent 5%, white 20%, white 80%, transparent 95%, transparent);
+        -webkit-mask-box-image: linear-gradient(to top, transparent, transparent 5%, white 20%, white 80%, transparent 95%, transparent);
+    }
+
+    .weui-picker-modal .picker-modal-inner {
+        position: relative;
+        height: 3.5rem;
+    }
+
+    .city-picker .col-province {
+        width: 2.6rem;
+    }
+
+    .city-picker .col-city {
+        width: 2.6rem;
+    }
+
+    .city-picker .col-district {
+        width: 2.6rem;
+    }
+
+    .weui-picker-modal .picker-center-highlight {
+        height: 32px;
+        box-sizing: border-box;
+        position: absolute;
+        left: 0;
+        width: 100%;
+        top: 50%;
+        margin-top: -16px;
+        pointer-events: none;
+    }
+
+    .weui-picker-modal .picker-items-col-wrapper {
+        -webkit-transition: 300ms;
+        transition: 300ms;
+        -webkit-transition-timing-function: ease-out;
+        transition-timing-function: ease-out;
+    }
+
+    .weui-picker-modal .picker-item.picker-selected {
+        color: #3d4145;
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+        -webkit-transform: rotateX(0deg);
+        transform: rotateX(0deg);
+    }
+
+    .weui-picker-modal .picker-item {
+        height: 32px;
+        line-height: 32px;
+        padding: 0 10px;
+        white-space: nowrap;
+        position: relative;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: #9b9b9b;
+        left: 0;
+        top: 0;
+        width: 100%;
+        box-sizing: border-box;
+        -webkit-transition: 300ms;
+        transition: 300ms;
+    }
+
+    * {
+        touch-action: none;
+    }
+
+    @media only screen and (-webkit-min-device-pixel-ratio: 2) {
+        .weui-picker-modal .picker-center-highlight:before {
+            -webkit-transform: scaleY(0.5);
+            transform: scaleY(0.5);
+        }
+    }
+
+    .weui-picker-modal .picker-center-highlight:before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: auto;
+        right: auto;
+        height: 1px;
+        width: 100%;
+        background-color: #d9d9d9;
+        display: block;
+        z-index: 15;
+        -webkit-transform-origin: 50% 0;
+        transform-origin: 50% 0;
+    }
+
+    @media only screen and (-webkit-min-device-pixel-ratio: 2) {
+        .weui-picker-modal .picker-center-highlight:after {
+            -webkit-transform: scaleY(0.5);
+            transform: scaleY(0.5);
+        }
+    }
+
+    .weui-picker-modal .picker-center-highlight:after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        right: auto;
+        top: auto;
+        height: 1px;
+        width: 100%;
+        background-color: #d9d9d9;
+        display: block;
+        z-index: 15;
+        -webkit-transform-origin: 50% 100%;
+        transform-origin: 50% 100%;
+    }
+
+    .weui_cell_primary .weui_input {
+        font-size: .3rem;
+        line-height: 1.2;
+    }
+</style>
+<body>
+<div class='radio-box'>
+    <div>
+        <input type="radio" id="1" name="type1" checked/>
+        <label for="1">
+            <span>园所</span>
+        </label>
+    </div>
+    <div>
+        <input type="radio" id="2" name="type1"/>
+        <label for="2">
+            <span>学校</span>
+        </label>
+    </div>
+</div>
+<div class='radio-box'>
+    <div>
+        <input type="radio" id="3" name="type2" checked/>
+        <label for="3">
+            <span>新生</span>
+        </label>
+    </div>
+    <div>
+        <input type="radio" id="4" name="type2"/>
+        <label for="4">
+            <span>续费</span>
+        </label>
+    </div>
+</div>
+<div class="weui-cells">
+    <div class="weui-cell select">
+        <div>
+            <p>选择园所：</p>
+        </div>
+        <div class="weui-cell__bd">
+            <select class="weui-select" name="select1">
+                <option value='' disabled selected style='display:none;'>请选择园所</option>
+                <option value="1">某某园所</option>
+                <option value="2">某某园所1</option>
+                <option value="3">某某园所2</option>
+                <option value="4">某某园所3</option>
+            </select>
+        </div>
+    </div>
+    <div class="weui-cell select">
+        <div>
+            <p>选择班级：</p>
+        </div>
+        <div class="weui-cell__bd">
+            <select class="weui-select" name="select1">
+                <option value='' disabled selected style='display:none;'>请选择班级</option>
+                <option value="1">某某班级</option>
+                <option value="2">某某班级1</option>
+                <option value="3">某某班级2</option>
+                <option value="4">某某班级3</option>
+            </select>
+        </div>
+    </div>
+    <div class="weui-cell">
+        <div>
+            <p>学生姓名：</p>
+        </div>
+        <div class="weui-cell__bd weui-cell__ft">
+            <input class="weui-input" type="text" placeholder="请输入真实姓名">
+        </div>
+    </div>
+    <div class="weui-cell select">
+        <div>
+            <p>学生年龄：</p>
+        </div>
+        <div class="weui-cell__bd">
+            <select class="weui-select" name="select1">
+                <option value='' disabled selected style='display:none;'>请选择年龄</option>
+                <option value="1">2岁</option>
+                <option value="2">3岁</option>
+                <option value="3">4岁</option>
+                <option value="4">5岁</option>
+                <option value="4">6岁</option>
+            </select>
+        </div>
+    </div>
+    <div class="weui-cell">
+        <div>
+            <p>学生性别：</p>
+        </div>
+        <div class="weui-cell__bd weui-cell__ft">
+            <div class='cell-radio-box'>
+                <div>
+                    <input type="radio" id="male" name="sex" checked/>
+                    <label for="male">
+                        <span>男</span>
+                    </label>
+                </div>
+                <div>
+                    <input type="radio" id="female" name="sex"/>
+                    <label for="female">
+                        <span>女</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="weui-cell">
+        <div>
+            <p>学生姓名：</p>
+        </div>
+        <div class="weui-cell__bd weui-cell__ft">
+            <input class="weui-input" type="text" placeholder="请输入真实姓名">
+        </div>
+    </div>
+    <div class="weui-cell">
+        <div>
+            <p>父母姓名：</p>
+        </div>
+        <div class="weui-cell__bd weui-cell__ft">
+            <input class="weui-input" type="text" placeholder="请输入父亲或者母亲姓名">
+        </div>
+    </div>
+    <div class="weui-cell select">
+        <div>
+            <p>省市区：</p>
+        </div>
+        <div class='weui-cell__bd'>
+            <div class="weui_cell_bd weui_cell_primary">
+                <input class="weui_input" type="text" placeholder="请选择省市区" id='ssx'/>
+            </div>
+        </div>
+
+    </div>
+    <div class="weui-cell">
+        <div>
+            <p>详细地址：</p>
+        </div>
+        <div class="weui-cell__bd weui-cell__ft">
+            <input class="weui-input" type="text" placeholder="请输入详细地址">
+        </div>
+    </div>
+</div>
+</body>
+<script src='script/zepto.min.js'></script>
+<script src='script/picker.js'></script>
+<script src='script/picker-city.js'></script>
+<script>
+    $(function () {
+        $("#ssx").cityPicker({
+            title: "选择省市县"
+        });
+    });
+
+
+</script>
+</html>
