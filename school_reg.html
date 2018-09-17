@@ -238,6 +238,15 @@
                 $(this).css("color", '#000');
             }
         });
+
+        $('.btn').click(function () {
+            if($('input[name="type2"]:checked').val() === '3'){
+                window.location.href='https://lxiaosky.github.io/yinglan/pay_reg.html';
+            }else {
+                //进行支付,支付成功后跳转
+                window.location.href='https://lxiaosky.github.io/yinglan/pay_success.html';
+            }
+        })
     });
 
 
