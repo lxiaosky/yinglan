@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <title>在线报名</title>
+    <link rel="stylesheet" href="css/weui.css">
+    <link rel="stylesheet" href="css/online.css">
+    <script src='script/flexible.js'></script>
+</head>
+<style>
+    .btn {
+        padding: 0 .3rem;
+        margin-top: 2.55rem;
+    }
+    .weui-cell.price input{
+        color: #005fc1;
+    }
+</style>
+<body>
+<div class="weui-cells">
+    <div class="weui-cell">
+        <div>
+            <p>续费时长：</p>
+        </div>
+        <div class="weui-cell__bd weui-cell__ft">
+            <div class='cell-radio-box'>
+                <div>
+                    <input type="radio" id="year" name="timeLength" checked/>
+                    <label for="year">
+                        <span>一年</span>
+                    </label>
+                </div>
+                <div>
+                    <input type="radio" id="halfYear" name="timeLength"/>
+                    <label for="halfYear">
+                        <span>半年</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="weui-cell select">
+        <div>
+            <p>入学时间：</p>
+        </div>
+        <div class='weui-cell__bd'>
+            <div class="weui_cell_bd weui_cell_primary">
+                <input class="weui_input" type="text" placeholder="请选择入学时间" id='date'/>
+            </div>
+        </div>
+    </div>
+    <div class="weui-cell price">
+        <div>
+            <p>缴费金额：</p>
+        </div>
+        <div class="weui-cell__bd weui-cell__ft">
+            <input class="weui-input" type="text" value="888元">
+        </div>
+    </div>
+</div>
+<div class='btn'>
+    <a href="javascript:;" class="weui-btn weui-btn_default">立即支付</a>
+</div>
+</body>
+<script src='script/zepto.min.js'></script>
+<script src='script/picker.js'></script>
+<script src='script/picker-city.js'></script>
+<script>
+    $(function () {
+        $("#date").datetimePicker({title:"选择日期",m:1});
+    });
+
+
+</script>
+</html>

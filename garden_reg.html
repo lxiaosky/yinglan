@@ -16,17 +16,26 @@
         padding: 0 .3rem;
         margin-top: .9rem;
     }
+    .weui-cell:first-child:before {
+         display: initial;
+    }
+    .weui-cell.price input{
+        color: #005fc1;
+    }
+    .renew{
+        display: none;
+    }
 </style>
 <body>
 <div class='radio-box'>
     <div>
-        <input type="radio" id="3" name="type2" checked/>
+        <input type="radio" id="3" value="3" name="type2" checked/>
         <label for="3">
             <span>新生</span>
         </label>
     </div>
     <div>
-        <input type="radio" id="4" name="type2"/>
+        <input type="radio" id="4" value="4" name="type2"/>
         <label for="4">
             <span>续费</span>
         </label>
@@ -61,82 +70,140 @@
             </select>
         </div>
     </div>
-    <div class="weui-cell">
-        <div>
-            <p>学生姓名：</p>
+    <div class='new'>
+        <div class="weui-cell">
+            <div>
+                <p>学生姓名：</p>
+            </div>
+            <div class="weui-cell__bd weui-cell__ft">
+                <input class="weui-input" type="text" placeholder="请输入真实姓名">
+            </div>
         </div>
-        <div class="weui-cell__bd weui-cell__ft">
-            <input class="weui-input" type="text" placeholder="请输入真实姓名">
+        <div class="weui-cell select">
+            <div>
+                <p>学生年龄：</p>
+            </div>
+            <div class="weui-cell__bd">
+                <select class="weui-select" name="select1">
+                    <option value='' disabled selected style='display:none;'>请选择年龄</option>
+                    <option value="1">2岁</option>
+                    <option value="2">3岁</option>
+                    <option value="3">4岁</option>
+                    <option value="4">5岁</option>
+                    <option value="4">6岁</option>
+                </select>
+            </div>
         </div>
-    </div>
-    <div class="weui-cell select">
-        <div>
-            <p>学生年龄：</p>
-        </div>
-        <div class="weui-cell__bd">
-            <select class="weui-select" name="select1">
-                <option value='' disabled selected style='display:none;'>请选择年龄</option>
-                <option value="1">2岁</option>
-                <option value="2">3岁</option>
-                <option value="3">4岁</option>
-                <option value="4">5岁</option>
-                <option value="4">6岁</option>
-            </select>
-        </div>
-    </div>
-    <div class="weui-cell">
-        <div>
-            <p>学生性别：</p>
-        </div>
-        <div class="weui-cell__bd weui-cell__ft">
-            <div class='cell-radio-box'>
-                <div>
-                    <input type="radio" id="male" name="sex" checked/>
-                    <label for="male">
-                        <span>男</span>
-                    </label>
-                </div>
-                <div>
-                    <input type="radio" id="female" name="sex"/>
-                    <label for="female">
-                        <span>女</span>
-                    </label>
+        <div class="weui-cell">
+            <div>
+                <p>学生性别：</p>
+            </div>
+            <div class="weui-cell__bd weui-cell__ft">
+                <div class='cell-radio-box'>
+                    <div>
+                        <input type="radio" id="male" name="sex" checked/>
+                        <label for="male">
+                            <span>男</span>
+                        </label>
+                    </div>
+                    <div>
+                        <input type="radio" id="female" name="sex"/>
+                        <label for="female">
+                            <span>女</span>
+                        </label>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="weui-cell">
-        <div>
-            <p>父母姓名：</p>
+        <div class="weui-cell">
+            <div>
+                <p>父母姓名：</p>
+            </div>
+            <div class="weui-cell__bd weui-cell__ft">
+                <input class="weui-input" type="text" placeholder="请输入父亲或者母亲姓名">
+            </div>
         </div>
-        <div class="weui-cell__bd weui-cell__ft">
-            <input class="weui-input" type="text" placeholder="请输入父亲或者母亲姓名">
+        <div class="weui-cell">
+            <div>
+                <p>手机号码：</p>
+            </div>
+            <div class="weui-cell__bd weui-cell__ft">
+                <input class="weui-input" type="tel" placeholder="请输入手机号码">
+            </div>
         </div>
-    </div>
-    <div class="weui-cell">
-        <div>
-            <p>手机号码：</p>
+        <div class="weui-cell select">
+            <div>
+                <p>省市区：</p>
+            </div>
+            <div class='weui-cell__bd'>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input class="weui_input" type="text" placeholder="请选择省市区" id='ssx'/>
+                </div>
+            </div>
         </div>
-        <div class="weui-cell__bd weui-cell__ft">
-            <input class="weui-input" type="tel" placeholder="请输入手机号码">
-        </div>
-    </div>
-    <div class="weui-cell select">
-        <div>
-            <p>省市区：</p>
-        </div>
-        <div class='weui-cell__bd'>
-            <div class="weui_cell_bd weui_cell_primary">
-                <input class="weui_input" type="text" placeholder="请选择省市区" id='ssx'/>
+        <div class="weui-cell textarea">
+            <div>
+                <p>详细地址：</p>
+            </div>
+            <div class="weui-cell__bd weui-cell__ft">
+                <textarea class="weui-textarea" placeholder="请输入详细地址" rows="4"></textarea>
             </div>
         </div>
     </div>
-    <div class="weui-cell textarea">
-        <div>
-            <p>详细地址：</p>
+    <div class='renew'>
+        <div class="weui-cell select">
+            <div>
+                <p>学生姓名：</p>
+            </div>
+            <div class="weui-cell__bd">
+                <select class="weui-select" name="select1">
+                    <option value='' disabled selected style='display:none;'>请选择学生</option>
+                    <option value="1">李白</option>
+                    <option value="2">杨玉环</option>
+                    <option value="3">曹操</option>
+                    <option value="4">刘备</option>
+                    <option value="4">周瑜</option>
+                </select>
+            </div>
         </div>
-        <div class="weui-cell__bd weui-cell__ft">
-            <textarea class="weui-textarea" placeholder="请输入详细地址" rows="4"></textarea>
+        <div class="weui-cell">
+            <div>
+                <p>续费时长：</p>
+            </div>
+            <div class="weui-cell__bd weui-cell__ft">
+                <div class='cell-radio-box'>
+                    <div>
+                        <input type="radio" id="year" name="timeLength" checked/>
+                        <label for="year">
+                            <span>一年</span>
+                        </label>
+                    </div>
+                    <div>
+                        <input type="radio" id="halfYear" name="timeLength"/>
+                        <label for="halfYear">
+                            <span>半年</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="weui-cell select">
+            <div>
+                <p>入学时间：</p>
+            </div>
+            <div class='weui-cell__bd'>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input class="weui_input" type="text" placeholder="请选择入学时间" id='date'/>
+                </div>
+            </div>
+        </div>
+        <div class="weui-cell price">
+            <div>
+                <p>缴费金额：</p>
+            </div>
+            <div class="weui-cell__bd weui-cell__ft">
+                <input class="weui-input" type="text" value="888元">
+            </div>
         </div>
     </div>
 </div>
@@ -149,9 +216,19 @@
 <script src='script/picker-city.js'></script>
 <script>
     $(function () {
-        $("#ssx").cityPicker({
-            title: "选择省市县"
-        });
+        $("#ssx").cityPicker({title: "选择省市县"});
+
+        $("#date").datetimePicker({title:"选择日期",m:1});
+
+        $('input[name="type2"]').change(function () {
+            if($(this).val() === '3'){
+                $('.new').css("display", 'block');
+                $('.renew').css("display", 'none');
+            }else {
+                $('.new').css("display", 'none');
+                $('.renew').css("display", 'block');
+            }
+        })
 
         $("select").change(function () {
             var selItem = $(this).val();
@@ -161,6 +238,15 @@
                 $(this).css("color", '#000');
             }
         });
+
+        $('.btn').click(function () {
+            if($('input[name="type2"]:checked').val() === '3'){
+                window.location.href='https://lxiaosky.github.io/yinglan/pay_reg.html';
+            }else {
+                //进行支付,支付成功后跳转
+                window.location.href='https://lxiaosky.github.io/yinglan/pay_success.html';
+            }
+        })
     });
 
 
