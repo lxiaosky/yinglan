@@ -14,24 +14,10 @@
     }
     .btn {
         padding: 0 .3rem;
-        margin-top: .35rem;
+        margin-top: .9rem;
     }
 </style>
 <body>
-<div class='radio-box'>
-    <div>
-        <input type="radio" id="1" name="type1" checked/>
-        <label for="1">
-            <span>园所</span>
-        </label>
-    </div>
-    <div>
-        <input type="radio" id="2" name="type1"/>
-        <label for="2">
-            <span>学校</span>
-        </label>
-    </div>
-</div>
 <div class='radio-box'>
     <div>
         <input type="radio" id="3" name="type2" checked/>
@@ -49,29 +35,29 @@
 <div class="weui-cells">
     <div class="weui-cell select">
         <div>
-            <p>选择园所：</p>
+            <p>选择学校：</p>
         </div>
         <div class="weui-cell__bd">
             <select class="weui-select" name="select1">
-                <option value='' disabled selected style='display:none;'>请选择园所</option>
-                <option value="1">某某园所</option>
-                <option value="2">某某园所1</option>
-                <option value="3">某某园所2</option>
-                <option value="4">某某园所3</option>
+                <option value='' disabled selected style='display:none;'>请选择学校</option>
+                <option value="1">某某学校</option>
+                <option value="2">某某学校1</option>
+                <option value="3">某某学校2</option>
+                <option value="4">某某学校3</option>
             </select>
         </div>
     </div>
     <div class="weui-cell select">
         <div>
-            <p>选择班级：</p>
+            <p>选择专业：</p>
         </div>
         <div class="weui-cell__bd">
             <select class="weui-select" name="select1">
-                <option value='' disabled selected style='display:none;'>请选择班级</option>
-                <option value="1">某某班级</option>
-                <option value="2">某某班级1</option>
-                <option value="3">某某班级2</option>
-                <option value="4">某某班级3</option>
+                <option value='' disabled selected style='display:none;'>请选择专业</option>
+                <option value="1">某某专业</option>
+                <option value="2">某某专业1</option>
+                <option value="3">某某专业2</option>
+                <option value="4">某某专业3</option>
             </select>
         </div>
     </div>
@@ -125,6 +111,14 @@
         </div>
         <div class="weui-cell__bd weui-cell__ft">
             <input class="weui-input" type="text" placeholder="请输入父亲或者母亲姓名">
+        </div>
+    </div>
+    <div class="weui-cell">
+        <div>
+            <p>手机号码：</p>
+        </div>
+        <div class="weui-cell__bd weui-cell__ft">
+            <input class="weui-input" type="tel" placeholder="请输入手机号码">
         </div>
     </div>
     <div class="weui-cell select">
