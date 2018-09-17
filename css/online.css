@@ -375,3 +375,6 @@ a {
 .weui-btn_default:not(.weui-btn_disabled):visited {
     color: #fff;
 }
+.weui-input {
+    color: #000;
+}
