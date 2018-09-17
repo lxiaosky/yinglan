@@ -72,7 +72,6 @@ input[type="radio"] {
     padding: 0;
     color: #999;
 }
-
 .select .weui-cell__bd:before {
     content: " ";
     display: inline-block;

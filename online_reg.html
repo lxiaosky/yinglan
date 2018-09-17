@@ -159,6 +159,15 @@
         $("#ssx").cityPicker({
             title: "选择省市县"
         });
+
+        $("select").change(function () {
+            var selItem = $(this).val();
+            if (selItem == $(this).find('option:first').val()) {
+                $(this).css("color", '#999');
+            } else {
+                $(this).css("color", '#000');
+            }
+        });
     });
 
 
